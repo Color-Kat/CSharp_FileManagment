@@ -72,14 +72,41 @@ namespace MyFileManagment
                 {
                     MessageBox.Show($"Ошибка при обработке строки: {line}. {ex.Message}");
                 }
-            }
-
-
-            // Set row counts for data grid view
-            // carsGrid.RowCount = numberOfCars;           
+            }         
         }
 
-        /*public unsafe void Convert(string _fn, DataGridView _dgErr)
+        public unsafe void LoadAndSaveFile(string filename)
+        {
+            StreamReader streamReader = new StreamReader(filename);
+
+            // Determine filename for new file
+            string newFilename = Path.GetFileNameWithoutExtension(filename) + ".dat";
+
+            StreamWriter writer = new StreamWriter(newFilename);
+
+            // Read file by lines (and set rows limit)
+            string line;
+            while ((line = streamReader.ReadLine()) != null)
+            {
+                try
+                {
+                    // Convert string line to Car structure
+                    // Car car = ConvertLineToCar(line);
+
+                    string[] carDataParts = line.Split(';');
+                    string carLineInNewFormat = string.Join('|', carDataParts);
+
+                    writer.WriteLine(carLineInNewFormat);
+                   
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show($"Ошибка при обработке строки: {line}. {ex.Message}");
+                }
+            }
+        }
+
+       /* public unsafe void BADConvert(string _fn, DataGridView _dgErr)
         {
             // Создаем массив объектов типа TbCars размером в 3 элемента
             TbCars[] bCarsMassive = new TbCars[3];
@@ -159,6 +186,6 @@ namespace MyFileManagment
 
             // Закрываем файл
             fCars.Close();
-        }*/
+        } */
     }
 }

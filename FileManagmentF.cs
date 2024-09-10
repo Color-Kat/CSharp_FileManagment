@@ -12,13 +12,12 @@ namespace MyFileManagment
 
         private void Convert_Click(object sender, EventArgs e)
         {
-            // FileViewer.Convert("Cars.txt", )
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                FileViewer.LoadAndSaveFile(openFileDialog.FileName);
         }
 
         private void Open_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("213");
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 FileViewer.Load(openFileDialog.FileName, carsGrid);
         }
