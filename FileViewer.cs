@@ -7,56 +7,76 @@ using System.Threading.Tasks;
 
 namespace MyFileManagment
 {
+    // https://chatgpt.com/c/66dfe0ea-2a94-8004-9ab1-abc615304950
     internal class FileViewer
     {
         public unsafe struct Car
         {
             public string Model;
+            public int Price;
             public string BodyType;
             public double EngineCapacity;
-            public int Price;
             public bool HasABS;
         }
 
-        private Car ConvertBytesToCar(byte[] carDataBytes)
+        private Car ConvertLineToCar(string line)
         {
             Car car = new Car();
 
-            car.Model = "Lada";
-            car.BodyType = "Седан";
-            car.EngineCapacity = 1.6;
-            car.Price = 20000;
-            car.HasABS = false;
+            // Separate string by ";"
+            string[] carDataParts = line.Split(';');
 
+            // Not enough data
+            if(carDataParts.Length != 5) {
+                throw new FormatException("Неверный формат данных: указаны не все поля: " + carDataParts.Length + "/5");
+            }
+            
+            // Fill car structure
+            car.Model = carDataParts[0].Trim();
+            car.Price = int.Parse(carDataParts[1]);
+            car.BodyType = carDataParts[2].Trim();
+            car.EngineCapacity = double.Parse(carDataParts[3]);
+            car.HasABS = carDataParts[4].Trim() == "да" ? true : false;
+            
             return car;
         }
 
         public unsafe void Load (string filename, DataGridView carsGrid)
         {
-            FileStream fileStream = File.OpenRead(filename);
+            StreamReader streamReader = new StreamReader(filename);
 
-            int numberOfCars = (int)(fileStream.Length / sizeof(Car));
+            int rowIndex = 0;
+            int rowsLimit = 50;
+            carsGrid.Rows.Clear();
 
-            // Set row counts for data grid view
-            carsGrid.RowCount = numberOfCars;
-
-            byte[] carDataBytes = new byte[sizeof(Car)];
-
-            for (int i = 0; i < numberOfCars; i++)
+            // Read file by lines (and set rows limit)
+            string line;
+            while ((line = streamReader.ReadLine()) != null && rowIndex < rowsLimit)
             {
-                fileStream.Read(carDataBytes, 0, carDataBytes.Length);
+                try
+                {
+                    // Convert string line to Car structure
+                    Car car = ConvertLineToCar(line);
 
-                Car car = ConvertBytesToCar(carDataBytes);
+                    // Add data to data grid view
+                    carsGrid.Rows.Add();
+                    carsGrid.Rows[rowIndex].Cells[0].Value = car.Model;  // 
+                    carsGrid.Rows[rowIndex].Cells[1].Value = car.Price.ToString();  // 
+                    carsGrid.Rows[rowIndex].Cells[2].Value = car.BodyType;  // 
+                    carsGrid.Rows[rowIndex].Cells[3].Value = car.EngineCapacity.ToString();  // 
+                    carsGrid.Rows[rowIndex].Cells[4].Value = car.HasABS.ToString();  // 
 
-                // Add data to data grid view
-                carsGrid.Rows[i].Cells[0].Value = car.Model;  // 
-                carsGrid.Rows[i].Cells[1].Value = car.Price.ToString();  // 
-                carsGrid.Rows[i].Cells[2].Value = car.BodyType;  // 
-                carsGrid.Rows[i].Cells[3].Value = car.EngineCapacity.ToString();  // 
-                carsGrid.Rows[i].Cells[4].Value = car.HasABS.ToString();  // 
+                    rowIndex++;
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show($"Ошибка при обработке строки: {line}. {ex.Message}");
+                }
             }
 
-            
+
+            // Set row counts for data grid view
+            // carsGrid.RowCount = numberOfCars;           
         }
 
         /*public unsafe void Convert(string _fn, DataGridView _dgErr)
