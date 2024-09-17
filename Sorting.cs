@@ -6,42 +6,30 @@ using System.Threading.Tasks;
 
 namespace MyFileManagment
 {
-    internal class Sorting
+    internal class Sorting<T>
     {
-        public List<Car> InsertingSort(List<Car> cars)
+        public List<T> InsertingSort(List<T> items)
         {
-            // cars.Reverse();
-
-            for(int i = 0; i < cars.Count; i++) 
+            for(int i = 0; i < items.Count; i++) 
             {
-                Car currentCar = cars[i];
+                T currentItem = items[i];
 
                 int j = i - 1;
 
-                while (j >= 0 && CompareCars(cars[j], currentCar) > 0) {
-                    cars[j + 1] = cars[j];
+                while (j >= 0 && CompareItems(items[j], currentItem) > 0) {
+                    items[j + 1] = items[j];
                     j--;
                 }
 
-                cars[j + 1] = currentCar;
+                items[j + 1] = currentItem;
             }
 
-            return cars;
+            return items;
         }
 
-        private int CompareCars(Car carA, Car carB)
+        protected virtual int CompareItems(T itemA, T itemB)
         {
-            // Compare by price
-            int priceComparison = carA.Price.CompareTo(carB.Price);
-            if(priceComparison != 0) return priceComparison;
-
-            // Compare by engine capacity
-            int engineCapacityComparison = carA.EngineCapacity.CompareTo(carB.EngineCapacity);
-            if (engineCapacityComparison != 0) return engineCapacityComparison;
-
-            // Compare by model
-            int modelComparison = carA.Model.CompareTo(carB.Model);
-            return modelComparison;
+            return -1;
         }
     }
 }

@@ -3,7 +3,7 @@ namespace MyFileManagment
     public partial class FileManagmentF : Form
     {
         FileViewer FileViewer = new FileViewer();
-        Sorting Sorting = new Sorting();
+        SortingCars SortingCars = new SortingCars();
         OpenFileDialog openFileDialog = new OpenFileDialog();
 
         public FileManagmentF()
@@ -29,7 +29,7 @@ namespace MyFileManagment
         private void sort_Click(object sender, EventArgs e)
         {
             List<Car> cars = FileViewer.Load("cars.dat");
-            List<Car> sortedCars = Sorting.InsertingSort(cars);
+            List<Car> sortedCars = SortingCars.InsertingSort(cars);
 
             FileViewer.Show(sortedCars, carsGrid);
         }
