@@ -3,6 +3,7 @@ namespace MyFileManagment
     public partial class FileManagmentF : Form
     {
         FileViewer FileViewer = new FileViewer();
+        Sorting Sorting = new Sorting();
         OpenFileDialog openFileDialog = new OpenFileDialog();
 
         public FileManagmentF()
@@ -13,7 +14,7 @@ namespace MyFileManagment
         private void Convert_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                FileViewer.LoadAndSaveFile(openFileDialog.FileName);
+                FileViewer.LoadAndSaveFile(openFileDialog.FileName, "cars.dat");
         }
 
         private void Open_Click(object sender, EventArgs e)
@@ -27,7 +28,10 @@ namespace MyFileManagment
 
         private void sort_Click(object sender, EventArgs e)
         {
+            List<Car> cars = FileViewer.Load("cars.dat");
+            List<Car> sortedCars = Sorting.Sort(cars);
 
+            FileViewer.Show(sortedCars, carsGrid);
         }
     }
 }

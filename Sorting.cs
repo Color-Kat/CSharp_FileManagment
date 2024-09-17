@@ -8,9 +8,11 @@ namespace MyFileManagment
 {
     internal class Sorting
     {
-        public void Sort()
+        public List<Car> Sort(List<Car> cars)
         {
+            cars.Reverse();
 
+            return cars;
         }
     }
 }

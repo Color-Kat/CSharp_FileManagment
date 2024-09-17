@@ -69,6 +69,8 @@ namespace MyFileManagment
                 }
             }
 
+            streamReader.Close();
+
             return cars;
         }
 
@@ -92,12 +94,12 @@ namespace MyFileManagment
             }
         }
 
-        public unsafe void LoadAndSaveFile(string filename)
+        public unsafe void LoadAndSaveFile(string filename, string newFilename = "cars.dat")
         {
             StreamReader streamReader = new StreamReader(filename);
 
             // Determine filename for new file
-            string newFilename = Path.GetFileNameWithoutExtension(filename) + ".dat";
+            // string newFilename = Path.GetFileNameWithoutExtension(filename) + ".dat";
 
             StreamWriter writer = new StreamWriter(newFilename);
 
@@ -119,6 +121,8 @@ namespace MyFileManagment
                     MessageBox.Show($"Ошибка при обработке строки: {line}. {ex.Message}");
                 }
             }
+
+            writer.Close();
         }
     }
 }
