@@ -39,12 +39,13 @@
             label1 = new Label();
             OpenFileDialog = new OpenFileDialog();
             sort = new Button();
+            LoadFileButton = new Button();
             ((System.ComponentModel.ISupportInitialize)carsGrid).BeginInit();
             SuspendLayout();
             // 
             // Convert
             // 
-            Convert.Location = new Point(22, 19);
+            Convert.Location = new Point(22, 886);
             Convert.Name = "Convert";
             Convert.Size = new Size(242, 46);
             Convert.TabIndex = 0;
@@ -54,7 +55,7 @@
             // 
             // Open
             // 
-            Open.Location = new Point(270, 19);
+            Open.Location = new Point(299, 886);
             Open.Name = "Open";
             Open.Size = new Size(150, 46);
             Open.TabIndex = 1;
@@ -122,7 +123,7 @@
             // 
             // sort
             // 
-            sort.Location = new Point(442, 19);
+            sort.Location = new Point(209, 22);
             sort.Name = "sort";
             sort.Size = new Size(150, 46);
             sort.TabIndex = 4;
@@ -130,11 +131,22 @@
             sort.UseVisualStyleBackColor = true;
             sort.Click += sort_Click;
             // 
+            // LoadFileButton
+            // 
+            LoadFileButton.Location = new Point(29, 22);
+            LoadFileButton.Name = "LoadFileButton";
+            LoadFileButton.Size = new Size(150, 46);
+            LoadFileButton.TabIndex = 5;
+            LoadFileButton.Text = "Load File";
+            LoadFileButton.UseVisualStyleBackColor = true;
+            LoadFileButton.Click += LoadFileButton_Click;
+            // 
             // FileManagmentF
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1704, 944);
+            Controls.Add(LoadFileButton);
             Controls.Add(sort);
             Controls.Add(label1);
             Controls.Add(carsGrid);
@@ -160,5 +172,6 @@
         private DataGridViewTextBoxColumn BodyType;
         private DataGridViewTextBoxColumn HasABS;
         private Button sort;
+        private Button LoadFileButton;
     }
 }

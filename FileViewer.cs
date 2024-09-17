@@ -46,7 +46,70 @@ namespace MyFileManagment
             return car;
         }
 
-        public unsafe List<Car> Load (string filename)
+        /**
+         * Show cars in DataGridView
+         */
+        public void Show(List<Car> cars, DataGridView carsGrid)
+        {
+            int rowsLimit = 50;
+            int rowsCount = cars.Count > rowsLimit ? rowsLimit : cars.Count;
+            carsGrid.Rows.Clear();
+
+            for (int i = 0; i < rowsCount; i++)
+            {
+                Car car = cars[i];
+
+                // Add data to data grid view
+                carsGrid.Rows.Add();
+                carsGrid.Rows[i].Cells[0].Value = car.Model;  // 
+                carsGrid.Rows[i].Cells[1].Value = car.Price.ToString();  // 
+                carsGrid.Rows[i].Cells[2].Value = car.BodyType;  // 
+                carsGrid.Rows[i].Cells[3].Value = car.EngineCapacity.ToString();  // 
+                carsGrid.Rows[i].Cells[4].Value = car.HasABS.ToString();  // 
+            }
+        }
+
+        /**
+         * Read file, copy it in bin and return cars.
+         */
+        public unsafe List<Car> Load(string filename, string newFilename = "cars.dat")
+        {
+            List<Car> cars = new List<Car>();
+            StreamReader streamReader = new StreamReader(filename);
+            StreamWriter writer = new StreamWriter(newFilename);
+
+            // Read file by lines
+            string line;
+            int rowIndex = 0;
+            while ((line = streamReader.ReadLine()) != null)
+            {
+                try
+                {
+                    // Write data to file
+                    writer.WriteLine(line);
+
+                    // Convert string line to Car structure
+                    Car car = ConvertLineToCar(line);
+                    cars.Add(car);
+
+                    rowIndex++;
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show($"Ошибка при обработке строки: {line}. {ex.Message}");
+                }
+            }
+
+            streamReader.Close();
+            writer.Close();
+
+            return cars;
+        }
+
+        /**
+         * Read file, convert it into Car.
+         */
+        public unsafe List<Car> Get(string filename)
         {
             List<Car> cars = new List<Car>();
             StreamReader streamReader = new StreamReader(filename);
@@ -75,27 +138,10 @@ namespace MyFileManagment
             return cars;
         }
 
-        public void Show(List<Car> cars, DataGridView carsGrid)
-        {
-            int rowsLimit = 50;
-            int rowsCount = cars.Count > rowsLimit ? rowsLimit : cars.Count;
-            carsGrid.Rows.Clear();
-
-            for (int i = 0; i < rowsCount; i++)
-            {
-                Car car = cars[i];
-
-                // Add data to data grid view
-                carsGrid.Rows.Add();
-                carsGrid.Rows[i].Cells[0].Value = car.Model;  // 
-                carsGrid.Rows[i].Cells[1].Value = car.Price.ToString();  // 
-                carsGrid.Rows[i].Cells[2].Value = car.BodyType;  // 
-                carsGrid.Rows[i].Cells[3].Value = car.EngineCapacity.ToString();  // 
-                carsGrid.Rows[i].Cells[4].Value = car.HasABS.ToString();  // 
-            }
-        }
-
-        public unsafe void LoadAndSaveFile(string filename, string newFilename = "cars.dat")
+        /**
+         * Load file and save it in bin.
+         */
+        public unsafe void UploadFile(string filename, string newFilename = "cars.dat")
         {
             StreamReader streamReader = new StreamReader(filename);
 
