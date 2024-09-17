@@ -31,13 +31,14 @@
             Convert = new Button();
             Open = new Button();
             carsGrid = new DataGridView();
-            label1 = new Label();
-            OpenFileDialog = new OpenFileDialog();
             Model = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             EngineCapacity = new DataGridViewTextBoxColumn();
             BodyType = new DataGridViewTextBoxColumn();
             HasABS = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            OpenFileDialog = new OpenFileDialog();
+            sort = new Button();
             ((System.ComponentModel.ISupportInitialize)carsGrid).BeginInit();
             SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             Convert.Name = "Convert";
             Convert.Size = new Size(242, 46);
             Convert.TabIndex = 0;
-            Convert.Text = "Convert Carx.txt";
+            Convert.Text = "Save";
             Convert.UseVisualStyleBackColor = true;
             Convert.Click += Convert_Click;
             // 
@@ -71,6 +72,41 @@
             carsGrid.Size = new Size(1078, 736);
             carsGrid.TabIndex = 2;
             // 
+            // Model
+            // 
+            Model.HeaderText = "Модель";
+            Model.MinimumWidth = 10;
+            Model.Name = "Model";
+            Model.Width = 200;
+            // 
+            // Price
+            // 
+            Price.HeaderText = "Цена";
+            Price.MinimumWidth = 10;
+            Price.Name = "Price";
+            Price.Width = 200;
+            // 
+            // EngineCapacity
+            // 
+            EngineCapacity.HeaderText = "Тип кузова";
+            EngineCapacity.MinimumWidth = 10;
+            EngineCapacity.Name = "EngineCapacity";
+            EngineCapacity.Width = 200;
+            // 
+            // BodyType
+            // 
+            BodyType.HeaderText = "Объём двигателя";
+            BodyType.MinimumWidth = 10;
+            BodyType.Name = "BodyType";
+            BodyType.Width = 200;
+            // 
+            // HasABS
+            // 
+            HasABS.HeaderText = "Наличие АБС";
+            HasABS.MinimumWidth = 10;
+            HasABS.Name = "HasABS";
+            HasABS.Width = 200;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -84,46 +120,22 @@
             // 
             OpenFileDialog.FileName = "cars.txt";
             // 
-            // Model
+            // sort
             // 
-            Model.HeaderText = "Column1";
-            Model.MinimumWidth = 10;
-            Model.Name = "Model";
-            Model.Width = 200;
-            // 
-            // Price
-            // 
-            Price.HeaderText = "Column1";
-            Price.MinimumWidth = 10;
-            Price.Name = "Price";
-            Price.Width = 200;
-            // 
-            // EngineCapacity
-            // 
-            EngineCapacity.HeaderText = "Column1";
-            EngineCapacity.MinimumWidth = 10;
-            EngineCapacity.Name = "EngineCapacity";
-            EngineCapacity.Width = 200;
-            // 
-            // BodyType
-            // 
-            BodyType.HeaderText = "Column1";
-            BodyType.MinimumWidth = 10;
-            BodyType.Name = "BodyType";
-            BodyType.Width = 200;
-            // 
-            // HasABS
-            // 
-            HasABS.HeaderText = "Column1";
-            HasABS.MinimumWidth = 10;
-            HasABS.Name = "HasABS";
-            HasABS.Width = 200;
+            sort.Location = new Point(442, 19);
+            sort.Name = "sort";
+            sort.Size = new Size(150, 46);
+            sort.TabIndex = 4;
+            sort.Text = "Sort";
+            sort.UseVisualStyleBackColor = true;
+            sort.Click += sort_Click;
             // 
             // FileManagmentF
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1704, 944);
+            Controls.Add(sort);
             Controls.Add(label1);
             Controls.Add(carsGrid);
             Controls.Add(Open);
@@ -147,5 +159,6 @@
         private DataGridViewTextBoxColumn EngineCapacity;
         private DataGridViewTextBoxColumn BodyType;
         private DataGridViewTextBoxColumn HasABS;
+        private Button sort;
     }
 }

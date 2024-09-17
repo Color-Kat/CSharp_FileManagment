@@ -19,7 +19,15 @@ namespace MyFileManagment
         private void Open_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                FileViewer.Load(openFileDialog.FileName, carsGrid);
+            {
+                List<Car> cars = FileViewer.Load(openFileDialog.FileName);
+                FileViewer.Show(cars, carsGrid);
+            }
+        }
+
+        private void sort_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
