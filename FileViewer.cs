@@ -18,6 +18,7 @@ namespace MyFileManagment
     }
 
     // https://chatgpt.com/c/66dfe0ea-2a94-8004-9ab1-abc615304950
+    // https://chatgpt.com/c/66e926e8-5ed8-8004-9ae0-1c54e681c085
     internal class FileViewer
     {
         /**

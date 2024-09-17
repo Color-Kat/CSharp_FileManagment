@@ -29,7 +29,7 @@ namespace MyFileManagment
         private void sort_Click(object sender, EventArgs e)
         {
             List<Car> cars = FileViewer.Load("cars.dat");
-            List<Car> sortedCars = Sorting.Sort(cars);
+            List<Car> sortedCars = Sorting.InsertingSort(cars);
 
             FileViewer.Show(sortedCars, carsGrid);
         }
