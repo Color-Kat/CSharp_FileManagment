@@ -67,6 +67,46 @@ namespace MyFileManagment
             return -1;
         }
 
+        public int BinarySearchSubstring(List<T> items, string searchString, TextBox err)
+        {
+
+            int left = 0;
+            int right = items.Count;
+
+            try
+            {
+                while (left <= right)
+                {
+                    int middle = (left + right) / 2;
+
+                    string currentKey = GenerateSearchKeyFromRecord(items[middle]);
+
+                    // Founded
+                    if (currentKey.Contains(searchString)) return middle;
+
+                    int comparisonResult = string.Compare(currentKey, searchString, StringComparison.OrdinalIgnoreCase);
+
+                    if (comparisonResult == 0)
+                    {
+                        return middle; // Founded
+                    }
+                    else if (comparisonResult < 0)
+                    {
+                        left = middle + 1;
+                    }
+                    else
+                    {
+                        right = middle - 1;
+                    }
+                }
+            } catch (Exception e)
+            {
+                return -1;
+            }
+
+            return -1;
+        }
+
         protected virtual string GenerateSearchKeyFromRecord(T item)
         {
             return "";

@@ -1,3 +1,5 @@
+using static System.Windows.Forms.LinkLabel;
+
 namespace MyFileManagment
 {
     public partial class FileManagmentF : Form
@@ -55,9 +57,18 @@ namespace MyFileManagment
             Car targetCar = new Car();
             targetCar.Model = searchString;
 
-            int i = SortingCars.BinarySearch(sortedCars, targetCar, errorTextBox);
+            //int i = SortingCars.BinarySearch(sortedCars, targetCar, errorTextBox);
+            int i = SortingCars.BinarySearchSubstring(sortedCars, searchString, errorTextBox);
 
-            FileViewer.Show([sortedCars[i]], carsGrid);
+            if (i == -1)
+            {
+                // Not found
+                MessageBox.Show("Not found");
+            } else
+            {
+                // Found
+                FileViewer.Show([sortedCars[i]], carsGrid);
+            }
         }
     }
 }
