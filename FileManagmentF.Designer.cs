@@ -40,6 +40,9 @@
             OpenFileDialog = new OpenFileDialog();
             sort = new Button();
             LoadFileButton = new Button();
+            SearchInput = new TextBox();
+            SearchFile = new Button();
+            errorTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)carsGrid).BeginInit();
             SuspendLayout();
             // 
@@ -141,11 +144,38 @@
             LoadFileButton.UseVisualStyleBackColor = true;
             LoadFileButton.Click += LoadFileButton_Click;
             // 
+            // SearchInput
+            // 
+            SearchInput.Location = new Point(394, 29);
+            SearchInput.Name = "SearchInput";
+            SearchInput.Size = new Size(200, 39);
+            SearchInput.TabIndex = 6;
+            // 
+            // SearchFile
+            // 
+            SearchFile.Location = new Point(606, 24);
+            SearchFile.Name = "SearchFile";
+            SearchFile.Size = new Size(150, 46);
+            SearchFile.TabIndex = 7;
+            SearchFile.Text = "Search";
+            SearchFile.UseVisualStyleBackColor = true;
+            SearchFile.Click += button1_Click;
+            // 
+            // errorTextBox
+            // 
+            errorTextBox.Location = new Point(1412, 19);
+            errorTextBox.Name = "errorTextBox";
+            errorTextBox.Size = new Size(280, 39);
+            errorTextBox.TabIndex = 8;
+            // 
             // FileManagmentF
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1704, 944);
+            Controls.Add(errorTextBox);
+            Controls.Add(SearchFile);
+            Controls.Add(SearchInput);
             Controls.Add(LoadFileButton);
             Controls.Add(sort);
             Controls.Add(label1);
@@ -173,5 +203,8 @@
         private DataGridViewTextBoxColumn HasABS;
         private Button sort;
         private Button LoadFileButton;
+        private TextBox SearchInput;
+        private Button SearchFile;
+        private TextBox errorTextBox;
     }
 }

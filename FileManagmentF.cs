@@ -4,6 +4,8 @@ namespace MyFileManagment
     {
         FileViewer FileViewer = new FileViewer();
         SortingCars SortingCars = new SortingCars();
+        Search Search = new Search();
+
         OpenFileDialog openFileDialog = new OpenFileDialog();
 
         public FileManagmentF()
@@ -41,6 +43,21 @@ namespace MyFileManagment
             List<Car> sortedCars = SortingCars.InsertingSort(cars);
 
             FileViewer.Show(sortedCars, carsGrid);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string searchString = SearchInput.Text;
+            // List<Car> searchResult = 
+            List<Car> cars = FileViewer.Get("cars.dat");
+            List<Car> sortedCars = SortingCars.InsertingSort(cars);
+
+            Car targetCar = new Car();
+            targetCar.Model = searchString;
+
+            int i = SortingCars.BinarySearch(sortedCars, targetCar, errorTextBox);
+
+            FileViewer.Show([sortedCars[i]], carsGrid);
         }
     }
 }
