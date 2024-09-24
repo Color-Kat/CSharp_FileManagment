@@ -33,6 +33,9 @@ namespace MyFileManagment
             return -1;
         }
 
+        /**
+         * Binary search only for 1 field sorting.
+         */
         public int BinarySearch(List<T> items, T targetItem, TextBox err)
         {
 
@@ -41,13 +44,9 @@ namespace MyFileManagment
 
             while(left <= right)
             {
-
                 int middle = (left + right) / 2;
 
-
-                // string currentKey = GenerateSearchKeyFromRecord(items[middle]);
-
-                // int comparisonResult = string.Compare(currentKey, searchString, StringComparison.OrdinalIgnoreCase)
+                // Only for 1 field sorting
                 int comparisonResult = CompareItems(items[middle], targetItem);
 
                 if(comparisonResult == 0)
@@ -56,10 +55,12 @@ namespace MyFileManagment
                 }
                 else if(comparisonResult < 0)
                 {
+                    // Search at right half
                     left = middle + 1;
                 }
                 else
                 {
+                    // Search at left half
                     right = middle - 1;
                 }
             }
@@ -67,11 +68,16 @@ namespace MyFileManagment
             return -1;
         }
 
+        /**
+         * Binary search for multi field sorting.
+         */
         public int BinarySearchSubstring(List<T> items, string searchString, TextBox err)
         {
 
             int left = 0;
             int right = items.Count;
+
+            searchString = searchString.ToLower();
 
             try
             {
@@ -79,12 +85,14 @@ namespace MyFileManagment
                 {
                     int middle = (left + right) / 2;
 
+                    // Generate string divided by ; from raw item
                     string currentKey = GenerateSearchKeyFromRecord(items[middle]);
 
-                    // Founded
+                    // If this string of current item contains search substring - founded
                     if (currentKey.Contains(searchString)) return middle;
 
-                    int comparisonResult = string.Compare(currentKey, searchString, StringComparison.OrdinalIgnoreCase);
+                    // Else compare search string and current item
+                    int comparisonResult = string.Compare(currentKey.ToLower(), searchString, true);
 
                     if (comparisonResult == 0)
                     {

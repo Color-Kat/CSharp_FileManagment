@@ -6,7 +6,7 @@ namespace MyFileManagment
     {
         FileViewer FileViewer = new FileViewer();
         SortingCars SortingCars = new SortingCars();
-        Search Search = new Search();
+        HashSearch HashSearch = new HashSearch();
 
         OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -64,11 +64,29 @@ namespace MyFileManagment
             {
                 // Not found
                 MessageBox.Show("Not found");
-            } else
+            }
+            else
             {
                 // Found
                 FileViewer.Show([sortedCars[i]], carsGrid);
             }
+        }
+
+        private void createHashButton_Click(object sender, EventArgs e)
+        {
+            List<Car> cars = FileViewer.Get("cars.dat"); // Get list of cars
+
+            List<string> result = HashSearch.CreateHashFile(cars, "cars.hash");
+        }
+
+        private void hashSearchButton_Click(object sender, EventArgs e)
+        {
+            List<Car> cars = FileViewer.Get("cars.dat");
+            Car searchFor = cars[1];
+
+            Car foundedCar = HashSearch.SeachInHashFile("cars.hash", searchFor);
+
+            FileViewer.Show([foundedCar], carsGrid);
         }
     }
 }

@@ -43,6 +43,8 @@
             SearchInput = new TextBox();
             SearchFile = new Button();
             errorTextBox = new TextBox();
+            createHashButton = new Button();
+            hashSearchButton = new Button();
             ((System.ComponentModel.ISupportInitialize)carsGrid).BeginInit();
             SuspendLayout();
             // 
@@ -146,16 +148,16 @@
             // 
             // SearchInput
             // 
-            SearchInput.Location = new Point(394, 29);
+            SearchInput.Location = new Point(1150, 26);
             SearchInput.Name = "SearchInput";
-            SearchInput.Size = new Size(200, 39);
+            SearchInput.Size = new Size(542, 39);
             SearchInput.TabIndex = 6;
             // 
             // SearchFile
             // 
-            SearchFile.Location = new Point(606, 24);
+            SearchFile.Location = new Point(1150, 71);
             SearchFile.Name = "SearchFile";
-            SearchFile.Size = new Size(150, 46);
+            SearchFile.Size = new Size(288, 46);
             SearchFile.TabIndex = 7;
             SearchFile.Text = "Search";
             SearchFile.UseVisualStyleBackColor = true;
@@ -163,16 +165,38 @@
             // 
             // errorTextBox
             // 
-            errorTextBox.Location = new Point(1412, 19);
+            errorTextBox.Location = new Point(492, 886);
             errorTextBox.Name = "errorTextBox";
             errorTextBox.Size = new Size(280, 39);
             errorTextBox.TabIndex = 8;
+            // 
+            // createHashButton
+            // 
+            createHashButton.Location = new Point(384, 24);
+            createHashButton.Name = "createHashButton";
+            createHashButton.Size = new Size(150, 46);
+            createHashButton.TabIndex = 9;
+            createHashButton.Text = "Create hash";
+            createHashButton.UseVisualStyleBackColor = true;
+            createHashButton.Click += createHashButton_Click;
+            // 
+            // hashSearchButton
+            // 
+            hashSearchButton.Location = new Point(1450, 71);
+            hashSearchButton.Name = "hashSearchButton";
+            hashSearchButton.Size = new Size(242, 46);
+            hashSearchButton.TabIndex = 10;
+            hashSearchButton.Text = "Hash Search";
+            hashSearchButton.UseVisualStyleBackColor = true;
+            hashSearchButton.Click += hashSearchButton_Click;
             // 
             // FileManagmentF
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1704, 944);
+            Controls.Add(hashSearchButton);
+            Controls.Add(createHashButton);
             Controls.Add(errorTextBox);
             Controls.Add(SearchFile);
             Controls.Add(SearchInput);
@@ -206,5 +230,7 @@
         private TextBox SearchInput;
         private Button SearchFile;
         private TextBox errorTextBox;
+        private Button createHashButton;
+        private Button hashSearchButton;
     }
 }

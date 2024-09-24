@@ -24,7 +24,7 @@ namespace MyFileManagment
         /**
          * Convert string line with separators to Car structure
          */
-        private Car ConvertLineToCar(string line)
+        public static Car ConvertLineToCar(string line)
         {
             Car car = new Car();
 
