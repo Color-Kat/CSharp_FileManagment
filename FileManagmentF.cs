@@ -42,7 +42,7 @@ namespace MyFileManagment
         private void sort_Click(object sender, EventArgs e)
         {
             List<Car> cars = FileViewer.Get("cars.dat");
-            List<Car> sortedCars = SortingCars.InsertingSort(cars);
+            List<Car> sortedCars = SortingCars.InsertingSort(cars, "Price"); // Сортируем по цене
 
             FileViewer.Show(sortedCars, carsGrid);
         }
@@ -52,13 +52,15 @@ namespace MyFileManagment
             string searchString = SearchInput.Text;
             // List<Car> searchResult = 
             List<Car> cars = FileViewer.Get("cars.dat");
-            List<Car> sortedCars = SortingCars.InsertingSort(cars);
+            List<Car> sortedCars = SortingCars.InsertingSort(cars, "Model"); // Для бинарного поиска сортируем по названию
+
+            // FileViewer.Show(sortedCars, carsGrid);
 
             Car targetCar = new Car();
             targetCar.Model = searchString;
 
             //int i = SortingCars.BinarySearch(sortedCars, targetCar, errorTextBox);
-            int i = SortingCars.BinarySearchSubstring(sortedCars, searchString, errorTextBox);
+            int i = SortingCars.BinarySearch("Model", sortedCars, targetCar, errorTextBox);
 
             if (i == -1)
             {

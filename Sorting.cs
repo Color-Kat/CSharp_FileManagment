@@ -9,7 +9,7 @@ namespace MyFileManagment
 {
     internal abstract class Sorting<T>
     {
-        public List<T> InsertingSort(List<T> items)
+        public List<T> InsertingSort(List<T> items, string propertyName)
         {
             for(int i = 0; i < items.Count; i++) 
             {
@@ -17,7 +17,7 @@ namespace MyFileManagment
 
                 int j = i - 1;
 
-                while (j >= 0 && CompareItems(items[j], currentItem) > 0) {
+                while (j >= 0 && CompareItems(items[j], currentItem, propertyName) > 0) {
                     items[j + 1] = items[j];
                     j--;
                 }
@@ -28,7 +28,7 @@ namespace MyFileManagment
             return items;
         }
 
-        protected virtual int CompareItems(T itemA, T itemB)
+        protected virtual int CompareItems(T itemA, T itemB, string propertyName)
         {
             return -1;
         }
@@ -36,18 +36,17 @@ namespace MyFileManagment
         /**
          * Binary search only for 1 field sorting.
          */
-        public int BinarySearch(List<T> items, T targetItem, TextBox err)
+        public int BinarySearch(string fieldName, List<T> items, T targetItem, TextBox err)
         {
-
             int left = 0;
             int right = items.Count;
 
-            while(left <= right)
+            while (left <= right)
             {
                 int middle = (left + right) / 2;
 
                 // Only for 1 field sorting
-                int comparisonResult = CompareItems(items[middle], targetItem);
+                int comparisonResult = CompareItems(items[middle], targetItem, fieldName);
 
                 if(comparisonResult == 0)
                 {

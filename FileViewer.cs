@@ -65,7 +65,6 @@ namespace MyFileManagment
                 carsGrid.Rows[i].Cells[1].Value = car.Price.ToString();  // 
                 carsGrid.Rows[i].Cells[2].Value = car.BodyType;  // 
                 carsGrid.Rows[i].Cells[3].Value = car.EngineCapacity.ToString();  // 
-                carsGrid.Rows[i].Cells[4].Value = car.HasABS.ToString();  // 
             }
         }
 

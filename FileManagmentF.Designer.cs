@@ -31,11 +31,6 @@
             Convert = new Button();
             Open = new Button();
             carsGrid = new DataGridView();
-            Model = new DataGridViewTextBoxColumn();
-            Price = new DataGridViewTextBoxColumn();
-            EngineCapacity = new DataGridViewTextBoxColumn();
-            BodyType = new DataGridViewTextBoxColumn();
-            HasABS = new DataGridViewTextBoxColumn();
             label1 = new Label();
             OpenFileDialog = new OpenFileDialog();
             sort = new Button();
@@ -45,6 +40,10 @@
             errorTextBox = new TextBox();
             createHashButton = new Button();
             hashSearchButton = new Button();
+            Model = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            EngineCapacity = new DataGridViewTextBoxColumn();
+            BodyType = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)carsGrid).BeginInit();
             SuspendLayout();
             // 
@@ -71,47 +70,12 @@
             // carsGrid
             // 
             carsGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            carsGrid.Columns.AddRange(new DataGridViewColumn[] { Model, Price, EngineCapacity, BodyType, HasABS });
+            carsGrid.Columns.AddRange(new DataGridViewColumn[] { Model, Price, EngineCapacity, BodyType });
             carsGrid.Location = new Point(22, 121);
             carsGrid.Name = "carsGrid";
             carsGrid.RowHeadersWidth = 82;
             carsGrid.Size = new Size(1078, 736);
             carsGrid.TabIndex = 2;
-            // 
-            // Model
-            // 
-            Model.HeaderText = "Модель";
-            Model.MinimumWidth = 10;
-            Model.Name = "Model";
-            Model.Width = 200;
-            // 
-            // Price
-            // 
-            Price.HeaderText = "Цена";
-            Price.MinimumWidth = 10;
-            Price.Name = "Price";
-            Price.Width = 200;
-            // 
-            // EngineCapacity
-            // 
-            EngineCapacity.HeaderText = "Тип кузова";
-            EngineCapacity.MinimumWidth = 10;
-            EngineCapacity.Name = "EngineCapacity";
-            EngineCapacity.Width = 200;
-            // 
-            // BodyType
-            // 
-            BodyType.HeaderText = "Объём двигателя";
-            BodyType.MinimumWidth = 10;
-            BodyType.Name = "BodyType";
-            BodyType.Width = 200;
-            // 
-            // HasABS
-            // 
-            HasABS.HeaderText = "Наличие АБС";
-            HasABS.MinimumWidth = 10;
-            HasABS.Name = "HasABS";
-            HasABS.Width = 200;
             // 
             // label1
             // 
@@ -190,6 +154,34 @@
             hashSearchButton.UseVisualStyleBackColor = true;
             hashSearchButton.Click += hashSearchButton_Click;
             // 
+            // Model
+            // 
+            Model.HeaderText = "Модель";
+            Model.MinimumWidth = 10;
+            Model.Name = "Model";
+            Model.Width = 200;
+            // 
+            // Price
+            // 
+            Price.HeaderText = "Цена";
+            Price.MinimumWidth = 10;
+            Price.Name = "Price";
+            Price.Width = 200;
+            // 
+            // EngineCapacity
+            // 
+            EngineCapacity.HeaderText = "Тип кузова";
+            EngineCapacity.MinimumWidth = 10;
+            EngineCapacity.Name = "EngineCapacity";
+            EngineCapacity.Width = 200;
+            // 
+            // BodyType
+            // 
+            BodyType.HeaderText = "Объём двигателя";
+            BodyType.MinimumWidth = 10;
+            BodyType.Name = "BodyType";
+            BodyType.Width = 200;
+            // 
             // FileManagmentF
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -220,11 +212,6 @@
         private DataGridView carsGrid;
         private Label label1;
         private OpenFileDialog OpenFileDialog;
-        private DataGridViewTextBoxColumn Model;
-        private DataGridViewTextBoxColumn Price;
-        private DataGridViewTextBoxColumn EngineCapacity;
-        private DataGridViewTextBoxColumn BodyType;
-        private DataGridViewTextBoxColumn HasABS;
         private Button sort;
         private Button LoadFileButton;
         private TextBox SearchInput;
@@ -232,5 +219,9 @@
         private TextBox errorTextBox;
         private Button createHashButton;
         private Button hashSearchButton;
+        private DataGridViewTextBoxColumn Model;
+        private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn EngineCapacity;
+        private DataGridViewTextBoxColumn BodyType;
     }
 }
